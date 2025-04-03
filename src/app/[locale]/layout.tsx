@@ -2,14 +2,13 @@ import { routing } from "@/i18n/routing"
 import type { Metadata } from "next"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages, setRequestLocale } from "next-intl/server"
-import { notFound } from "next/navigation"
-import { Footer } from "./_components/footer"
-import "./globals.css"
-import { Header } from "./_components/header"
-import { Noto_Sans_Arabic } from "next/font/google"
+import { Cairo, Rubik } from "next/font/google"
 import { headers } from "next/headers"
-import { parse } from "url"
+import { notFound } from "next/navigation"
 import ColorThemeSwitch from "./_components/color-theme-switch"
+import { Footer } from "./_components/footer"
+import { Header } from "./_components/header"
+import "./globals.css"
 
 export const metadata: Metadata = {
   title: { template: "Almira Group | %s", default: "Almira group" },
@@ -19,8 +18,12 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
-const font = Noto_Sans_Arabic({
+const arFont = Cairo({
   subsets: ["arabic"],
+  weight: ["300", "400", "500", "700"],
+})
+const enFont = Rubik({
+  subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
 })
 
@@ -48,7 +51,7 @@ export default async function LocaleLayout({
 
   const headersList = await headers()
   const referer = headersList.get("referer")
-  const pathname = (referer ? parse(referer).pathname : "/") || "/"
+  const pathname = (referer ? new URL(referer).pathname : "/") || "/"
   let color = "#006144"
   if (pathname.includes("/furniture")) color = "#AB8542"
   if (pathname.includes("/medical")) color = "#6EB04A"
@@ -60,7 +63,7 @@ export default async function LocaleLayout({
     <html
       dir={locale == "ar" ? "rtl" : "ltr"}
       lang={locale}
-      className={font.className}
+      className={locale === "ar" ? arFont.className : enFont.className}
       style={{
         // @ts-ignore
         "--primary-color-root": color,
