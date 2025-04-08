@@ -116,8 +116,10 @@ import brand13 from "./F 339 13.png"
 import brand14 from "./F 339 14.png"
 import brand15 from "./F 339 15.png"
 
+import whatsapp from "./WhatsApp.svg.webp"
 export {
   logo,
+  whatsapp,
   hero0,
   aboutImage,
   hero1,

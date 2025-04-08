@@ -9,6 +9,7 @@ import ColorThemeSwitch from "./_components/color-theme-switch"
 import { Footer } from "./_components/footer"
 import { Header } from "./_components/header"
 import "./globals.css"
+import { whatsapp } from "@/assets"
 
 export const metadata: Metadata = {
   title: { template: "Almira Group | %s", default: "Almira group" },
@@ -75,6 +76,20 @@ export default async function LocaleLayout({
           {children}
 
           <Footer />
+          <a
+            href="https://wa.me/+966502177179"
+            className="whatsapp-icon fixed bottom-4 left-4 z-50"
+            data-uw-rm-brl="PR"
+            data-uw-original-href="https://wa.me/+966502177179"
+          >
+            <img
+              src={whatsapp.src}
+              alt="WhatsApp Logo"
+              className="w-15 h-15"
+              data-uw-rm-alt-original="WhatsApp Logo"
+              data-uw-rm-alt="ALT"
+            />
+          </a>
           <ColorThemeSwitch />
         </NextIntlClientProvider>
       </body>
