@@ -10,6 +10,7 @@ import { Footer } from "./_components/footer"
 import { Header } from "./_components/header"
 import "./globals.css"
 import { whatsapp } from "@/assets"
+import Script from "next/script"
 
 export const metadata: Metadata = {
   title: { template: "Almira Group | %s", default: "Almira group" },
@@ -92,6 +93,10 @@ export default async function LocaleLayout({
           </a>
           <ColorThemeSwitch />
         </NextIntlClientProvider>
+        <Script
+          src="https://cdn.userway.org/widget.js"
+          data-account="kzADUPdCFf"
+        ></Script>
       </body>
     </html>
   )
