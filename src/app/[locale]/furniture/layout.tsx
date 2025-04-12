@@ -19,11 +19,25 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
+import { notFound } from "next/navigation"
+import { setRequestLocale } from "next-intl/server"
+
 export default async function LocaleLayout({
   children,
+  params,
 }: {
   children: React.ReactNode
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params
+
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as any)) {
+    notFound()
+  }
+
+  // Enable static rendering
+  setRequestLocale(locale)
   return (
     <div>
       <Hero />

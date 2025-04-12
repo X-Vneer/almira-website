@@ -27,7 +27,24 @@ const images = [
   frame12,
 ]
 
-export default function ImageGallery() {
+import { routing } from "@/i18n/routing"
+import { notFound } from "next/navigation"
+import { setRequestLocale } from "next-intl/server"
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as any)) {
+    notFound()
+  }
+
+  // Enable static rendering
+  setRequestLocale(locale)
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 py-20 ">

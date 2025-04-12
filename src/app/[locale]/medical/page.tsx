@@ -1,14 +1,25 @@
-import { furnitureLogo, sofaAr, sofaEn } from "@/assets"
-import React from "react"
-import { Hero } from "./_components/hero"
+import { routing } from "@/i18n/routing"
+import { setRequestLocale } from "next-intl/server"
+import { notFound } from "next/navigation"
 import { About } from "./_components/about"
 
-const Page = () => {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as any)) {
+    notFound()
+  }
+
+  // Enable static rendering
+  setRequestLocale(locale)
   return (
     <>
       <About />
     </>
   )
 }
-
-export default Page

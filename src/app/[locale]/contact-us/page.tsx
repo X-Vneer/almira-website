@@ -1,10 +1,21 @@
 import { useTranslations } from "next-intl"
 import React from "react"
 
-type Props = {}
+import { routing } from "@/i18n/routing"
+import { notFound } from "next/navigation"
+import { getTranslations, setRequestLocale } from "next-intl/server"
 
-const Page = (props: Props) => {
-  const t = useTranslations("contact-us")
+const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
+  const { locale } = await params
+
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as any)) {
+    notFound()
+  }
+
+  // Enable static rendering
+  setRequestLocale(locale)
+  const t = await getTranslations("contact-us")
   return (
     <section className="mb-20">
       {/* Container */}
