@@ -17,7 +17,7 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
   setRequestLocale(locale)
   const t = await getTranslations("contact-us")
   return (
-    <section className="mb-20">
+    <section className="mb-20 pt-20">
       {/* Container */}
 
       <div>
@@ -47,8 +47,12 @@ const Page = async ({ params }: { params: Promise<{ locale: string }> }) => {
               <h3 className="mb-4 text-3xl font-bold md:text-4xl">
                 {t("phone-numbers")}
               </h3>
-              <p className="text-sm text-gray-500">+966 13 827 3792</p>
-              <p className="text-sm text-gray-500">+966 13 827 3792</p>
+              <p dir="ltr" className="rtl:text-right text-sm text-gray-500">
+                +966 13 827 3792
+              </p>
+              <p dir="ltr" className="rtl:text-right text-sm text-gray-500">
+                +966 13 827 3792
+              </p>
               <div className="absolute right-0 top-1/3 hidden h-2/5 border-r border-gray-300 md:block"></div>
             </div>
             {/* Item */}
