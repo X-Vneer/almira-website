@@ -4,9 +4,9 @@ import { useTranslations } from "next-intl"
 export function Hero() {
   const t = useTranslations("about-page")
   return (
-    <section className="mb-10">
+    <section className="mb-10 ">
       {/* Hero top */}
-      <div className="bg-primary/85">
+      <div className="bg-primary/85 lg:pt-16">
         {/* Container */}
         <div className="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-20">
           {/* Title */}
