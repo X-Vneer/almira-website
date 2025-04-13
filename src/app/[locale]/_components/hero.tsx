@@ -9,7 +9,6 @@ import useEmblaCarousel from "embla-carousel-react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { StaticImageData } from "next/dist/shared/lib/get-img-props"
-import Image from "next/image"
 import { useParams } from "next/navigation"
 import { useCallback } from "react"
 import { motion } from "motion/react"
@@ -24,12 +23,12 @@ const Slide = ({ src, index }: { src: StaticImageData; index: number }) => {
         inViewport ? "blur-0" : "blur-md"
       )}
     >
-      <Image
+      <img
         loading={index !== 0 ? undefined : "lazy"}
         className="h-full w-full object-cover"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        src={src}
+        src={src.src}
         alt="background slider"
       />
       <div className="absolute inset-0 bg-black opacity-50"></div>
